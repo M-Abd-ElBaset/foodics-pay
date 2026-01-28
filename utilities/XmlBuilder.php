@@ -88,6 +88,10 @@ class XmlBuilder
 
     public function addNotes(array $notes): self
     {
+        if (empty($notes))
+        {
+            return $this;
+        }
         $notes = $this->xml->createElement('Notes');
 
         foreach($notes as $note)
@@ -102,6 +106,11 @@ class XmlBuilder
 
     public function addPaymentType(string $paymentType): self
     {
+        if($paymentType == 99)
+        {
+            return $this;
+        }
+
         $this->root->appendChild($this->xml->createElement('PaymentType'), $paymentType);
 
         return $this;
@@ -109,6 +118,11 @@ class XmlBuilder
 
     public function addChargeDetails(string $chargeDetails): self
     {
+        if ($chargeDetails == 'SHA')
+        {
+            return $this;
+        }
+
         $this->root->appendChild($this->xml->createElement('ChargeDetails'), $chargeDetails);
 
         return $this;
