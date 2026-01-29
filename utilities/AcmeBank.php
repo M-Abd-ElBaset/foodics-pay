@@ -2,9 +2,9 @@
 
 namespace utilities;
 
-class AcmeBank implements Bank
+class AcmeBank extends Bank
 {
-    public function parse(string $transaction) : array
+    public function parseLine(string $transaction) : array
     {
         try {
             $parts = explode('//', $transaction);

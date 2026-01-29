@@ -2,9 +2,9 @@
 
 namespace utilities;
 
-class FoodicsBank implements Bank
+class FoodicsBank extends Bank
 {
-    public function parse(string $transaction) : array
+    public function parseLine(string $transaction) : array
     {
         try {
             // Split by # delimiter first
