@@ -16,31 +16,25 @@ class FoodicsBank extends Bank
 
             // Parse first part: Date and Amount
             $dateAmountPart = $parts[0];
-            preg_match('/^(\d{4})(\d{2})(\d{2})(\d{3}),(\d+\.\d{2})$/', $dateAmountPart, $matches);
+            preg_match('/^(\d{4})(\d{2})(\d{2})(\d+,\d{2})$/', $dateAmountPart, $matches);
 
             if (empty($matches)) {
                 throw new Exception('Invalid date/amount format in Foodics transaction');
             }
 
             $date = $matches[1] . '-' . $matches[2] . '-' . $matches[3]; // YYYY-MM-DD
-            $amount = $matches[5];
+            $amount = $matches[4];
 
             // Parse second part: Reference
             $reference = $parts[1];
 
             // Parse third part: Key-value pairs
-            $keyValues = [];
             $kvPart = $parts[2];
 
             // Split by "/" to get key-value pairs
             $pairs = explode('/', $kvPart);
-
-            // Group pairs (key/value/key/value...)
-            for ($i = 0; $i < count($pairs); $i += 2) {
-                if (isset($pairs[$i + 1])) {
-                    $keyValues[$pairs[$i]] = $pairs[$i + 1];
-                }
-            }
+            $pairs = array_chunk($pairs, 2);
+            $keyValues = array_combine(array_column($pairs, 0), array_column($pairs, 1));
 
             return [
                 'bank' => 'foodics',
