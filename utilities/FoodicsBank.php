@@ -24,6 +24,7 @@ class FoodicsBank extends Bank
 
             $date = $matches[1] . '-' . $matches[2] . '-' . $matches[3]; // YYYY-MM-DD
             $amount = $matches[4];
+            $amount = (float) str_replace(',', '.', $amount);
 
             // Parse second part: Reference
             $reference = $parts[1];

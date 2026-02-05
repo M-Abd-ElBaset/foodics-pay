@@ -14,6 +14,8 @@ class AcmeBank extends Bank
             }
 
             $amount = trim($parts[0]);
+            $amount = (float) str_replace(',', '.', $amount);
+
             $reference = trim($parts[1]);
             $date = trim($parts[2]);
 
