@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('webhook/foodics', [WebhookController::class, 'foodics']);
-Route::post('webhook/acme', [WebhookController::class, 'acme']);
+Route::post('webhooks/foodics', [WebhookController::class, 'foodics']);
+Route::post('webhooks/acme', [WebhookController::class, 'acme']);
