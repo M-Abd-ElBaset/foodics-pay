@@ -34,6 +34,8 @@ class WebhookController extends Controller
                 ], 207); // Multi-Status
             }
 
+            $bank->buildXmlFromTransactions($result['success']);
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'All transactions processed successfully',
@@ -67,6 +69,8 @@ class WebhookController extends Controller
                     'transactions' => $result['success'],
                 ], 207);
             }
+
+            $bank->buildXmlFromTransactions($result['success']);
 
             return response()->json([
                 'status' => 'success',
