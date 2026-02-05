@@ -5,7 +5,7 @@ namespace App\utilities;
 class BankFactory
 {
     const BANKS = ['foodics', 'acme'];
-    public function create($name) : Bank
+    public static function create($name) : Bank
     {
 
         if(!in_array($name, self::BANKS)){
