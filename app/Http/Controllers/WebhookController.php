@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\utilities\BankFactory;
+use App\utilities\XmlBuilder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use utilities\BankFactory;
-use utilities\XmlBuilder;
 
 class WebhookController extends Controller
 {

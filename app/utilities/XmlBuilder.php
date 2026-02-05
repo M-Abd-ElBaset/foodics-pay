@@ -1,6 +1,6 @@
 <?php
 
-namespace utilities;
+namespace App\utilities;
 
 use DOMDocument;
 use DTOs\ReceiverInfoDTO;

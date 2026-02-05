@@ -1,6 +1,8 @@
 <?php
 
-namespace utilities;
+namespace App\utilities;
+
+use utilities\Exception;
 
 class FoodicsBank extends Bank
 {
