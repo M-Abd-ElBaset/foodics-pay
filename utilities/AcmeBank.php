@@ -15,14 +15,12 @@ class AcmeBank extends Bank
 
             $amount = trim($parts[0]);
             $reference = trim($parts[1]);
-            $dateStr = trim($parts[2]);
+            $date = trim($parts[2]);
 
             // Parse date (YYYYMMDD format)
-            if (!preg_match('/^(\d{4})(\d{2})(\d{2})$/', $dateStr, $matches)) {
+            if (!preg_match('/^(\d{4})(\d{2})(\d{2})$/', $date)) {
                 throw new Exception('Invalid date format in Acme transaction');
             }
-
-            $date = $matches[1] . '-' . $matches[2] . '-' . $matches[3]; // YYYY-MM-DD
 
             return [
                 'bank' => 'acme',
