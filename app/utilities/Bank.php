@@ -9,9 +9,6 @@ use utilities\Exception;
 
 abstract class Bank
 {
-    public function __construct(protected XmlBuilder $xmlBuilder){
-
-    }
     abstract public function parseLine(string $transaction): array;
 
     public function parse(array $lines): array
