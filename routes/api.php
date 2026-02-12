@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\TransactionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('webhooks/foodics', [WebhookController::class, 'foodics']);
-Route::post('webhooks/acme', [WebhookController::class, 'acme']);
+Route::post('transactions/foodics/receive', [TransactionsController::class, 'receive'])->defaults('bank','foodics');
+Route::post('transactions/acme/receive', [TransactionsController::class, 'receive'])->defaults('bank','acme');
