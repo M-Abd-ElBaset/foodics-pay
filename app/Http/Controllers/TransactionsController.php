@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SendTransactionRequest;
 use App\utilities\BankFactory;
 use App\utilities\XmlBuilder;
+use App\utilities\XmlDirector;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -46,5 +48,11 @@ class TransactionsController extends Controller
                 'message' => $e->getMessage(),
             ], 400);
         }
+    }
+
+    public function send(SendTransactionRequest $request)
+    {
+        $xmlDirector = new XmlDirector($this->xmlBuilder);
+        $xmlDirector->buildXmlFromTransactions($request);
     }
 }

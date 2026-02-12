@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('transactions/foodics/receive', [TransactionsController::class, 'receive'])->defaults('bank','foodics');
 Route::post('transactions/acme/receive', [TransactionsController::class, 'receive'])->defaults('bank','acme');
+
+Route::post('transactions/send', [TransactionsController::class, 'send']);
