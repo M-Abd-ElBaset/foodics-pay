@@ -11,12 +11,14 @@ class TransactionsTest extends TestCase
      */
     public function test_foodics_webhook_with_valid_transactions()
     {
-        $payload = "20250615156,50.00#202506159000001#note/debt payment march/internal_reference/A462JE81\n" .
-            "20250615156,75.50#202506159000002#note/service payment/internal_reference/A462JE82";
+        $payload = "20250615156,50#202506159000001#note/debt payment march/internal_reference/A462JE81\n" .
+            "20250615156,75#202506159000002#note/service payment/internal_reference/A462JE82";
 
-        $response = $this->post('/api/transactions/foodics/receive', [], [
+        $response = $this->post('/api/transactions/foodics/receive', [
+            'content' => $payload
+        ], [
             'CONTENT_TYPE' => 'text/plain',
-        ], $payload);
+        ]);
 
         $response->assertStatus(200);
         $response->assertJson([
@@ -30,12 +32,14 @@ class TransactionsTest extends TestCase
      */
     public function test_acme_webhook_with_valid_transactions()
     {
-        $payload = "50.00//202506159000001//20250615\n" .
-            "75.50//202506159000002//20250614";
+        $payload = "156,50//202506159000001//20250615\n" .
+            "156,75//202506159000002//20250614";
 
-        $response = $this->post('/api/transactions/acme/receive', [], [
+        $response = $this->post('/api/transactions/acme/receive', [
+            'content' => $payload
+        ], [
             'CONTENT_TYPE' => 'text/plain',
-        ], $payload);
+        ]);
 
         $response->assertStatus(200);
         $response->assertJson([
@@ -50,12 +54,14 @@ class TransactionsTest extends TestCase
      */
     public function test_foodics_webhook_with_partial_errors()
     {
-        $payload = "20250615156,50.00#REF001#note/valid/ref/test\n" .
+        $payload = "20250615156,50#REF001#note/valid/ref/test\n" .
             "INVALID_FORMAT";
 
-        $response = $this->post('/api/transactions/foodics/receive', [], [
+        $response = $this->post('/api/transactions/foodics/receive', [
+            'content' => $payload
+        ], [
             'CONTENT_TYPE' => 'text/plain',
-        ], $payload);
+        ]);
 
         $response->assertStatus(207); // Multi-Status
         $response->assertJson([
