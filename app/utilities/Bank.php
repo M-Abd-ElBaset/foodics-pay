@@ -11,11 +11,12 @@ abstract class Bank
         $transactions = [];
         $errors = [];
 
+        $lines = array_filter($lines, fn($line) => !empty(trim($line)));
+        $lines = array_unique($lines);
+
         foreach ($lines as $index => $line) {
             try {
-                if (!empty(trim($line))) {
-                    $transactions[] = $this->parseLine($line);
-                }
+                $transactions[] = $this->parseLine($line);
             } catch (\Exception $e) {
                 $errors[] = [
                     'line_index' => $index,
