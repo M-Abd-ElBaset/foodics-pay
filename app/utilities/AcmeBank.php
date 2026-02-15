@@ -21,7 +21,7 @@ class AcmeBank extends Bank
 
             // Parse date (YYYYMMDD format)
             if (!preg_match('/^(\d{4})(\d{2})(\d{2})$/', $date)) {
-                throw new Exception('Invalid date format in Acme transaction');
+                throw new \Exception('Invalid date format in Acme transaction');
             }
 
             return [

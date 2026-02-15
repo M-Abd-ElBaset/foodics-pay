@@ -2,8 +2,6 @@
 
 namespace App\utilities;
 
-use Illuminate\Support\Facades\Log;
-
 class FoodicsBank extends Bank
 {
     public function parseLine(string $transaction) : array
@@ -13,7 +11,7 @@ class FoodicsBank extends Bank
             $parts = explode('#', $transaction);
 
             if (count($parts) < 3) {
-                throw new Exception('Invalid Foodics transaction format');
+                throw new \Exception('Invalid Foodics transaction format');
             }
 
             // Parse first part: Date and Amount
