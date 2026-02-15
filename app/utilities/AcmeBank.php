@@ -2,8 +2,6 @@
 
 namespace App\utilities;
 
-use utilities\Exception;
-
 class AcmeBank extends Bank
 {
     public function parseLine(string $transaction) : array
@@ -12,7 +10,7 @@ class AcmeBank extends Bank
             $parts = explode('//', $transaction);
 
             if (count($parts) !== 3) {
-                throw new Exception('Invalid Acme transaction format');
+                throw new \Exception('Invalid Acme transaction format');
             }
 
             $amount = trim($parts[0]);
@@ -33,8 +31,8 @@ class AcmeBank extends Bank
                 'reference' => $reference,
                 'metadata' => [],
             ];
-        } catch (Exception $e) {
-            throw new Exception('Acme parsing error: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            throw new \Exception('Acme parsing error: ' . $e->getMessage());
         }
     }
 }

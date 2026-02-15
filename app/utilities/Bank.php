@@ -19,7 +19,7 @@ abstract class Bank
         foreach ($lines as $index => $line) {
             try {
                 if (!empty(trim($line))) {
-                    $transactions[] = $this->parse($line);
+                    $transactions[] = $this->parseLine($line);
                 }
             } catch (Exception $e) {
                 $errors[] = [

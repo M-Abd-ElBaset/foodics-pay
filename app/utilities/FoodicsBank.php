@@ -2,7 +2,7 @@
 
 namespace App\utilities;
 
-use utilities\Exception;
+use Illuminate\Support\Facades\Log;
 
 class FoodicsBank extends Bank
 {
@@ -21,7 +21,7 @@ class FoodicsBank extends Bank
             preg_match('/^(\d{4})(\d{2})(\d{2})(\d+,\d{2})$/', $dateAmountPart, $matches);
 
             if (empty($matches)) {
-                throw new Exception('Invalid date/amount format in Foodics transaction');
+                throw new \Exception('Invalid date/amount format in Foodics transaction');
             }
 
             $date = $matches[1] . '-' . $matches[2] . '-' . $matches[3]; // YYYY-MM-DD
@@ -39,7 +39,7 @@ class FoodicsBank extends Bank
             $pairs = array_chunk($pairs, 2);
             $keyValues = array_combine(array_column($pairs, 0), array_column($pairs, 1));
 
-            return [
+            return  [
                 'bank' => 'foodics',
                 'date' => $date,
                 'amount' => $amount,
@@ -48,8 +48,8 @@ class FoodicsBank extends Bank
                 'note' => $keyValues['note'] ?? null,
                 'internal_reference' => $keyValues['internal_reference'] ?? null,
             ];
-        } catch (Exception $e) {
-            throw new Exception('Foodics parsing error: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            throw new \Exception('Foodics parsing error: ' . $e->getMessage());
         }
     }
 }
