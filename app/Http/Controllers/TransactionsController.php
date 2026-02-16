@@ -58,6 +58,7 @@ class TransactionsController extends Controller
     public function send(SendTransactionRequest $request)
     {
         $xmlDirector = new XmlDirector($this->xmlBuilder);
-        $xmlDirector->buildXmlFromTransactions($request);
+        $response = $xmlDirector->buildXmlFromTransactions($request);
+        return response()->json($response);
     }
 }

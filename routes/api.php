@@ -15,11 +15,12 @@ use App\Http\Controllers\TransactionsController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('test-send', function() {
+    return 'Test route works';
 });
 
-Route::post('transactions/{bank}/receive', [TransactionsController::class, 'receive'])
+Route::post('transactions/send', [TransactionsController::class, 'send']);
+
+Route::post('transactions/receive/{bank}', [TransactionsController::class, 'receive'])
     ->where('bank', 'foodics|acme');
 
-Route::post('transactions/send', [TransactionsController::class, 'send']);
