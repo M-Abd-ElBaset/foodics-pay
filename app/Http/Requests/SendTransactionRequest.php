@@ -26,19 +26,16 @@ class SendTransactionRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                'regex:/^[A-Z0-9\-_]+$/',  // Alphanumeric, dash, underscore
             ],
 
             'date' => [
                 'required',
-                'date_format:Y-m-d',
-                'after_or_equal:today',  // Can't be in the past
+                'date_format:Y-m-d'
             ],
 
             'amount' => [
                 'required',
                 'numeric',
-                'decimal:2',
                 'min:0.01',
                 'max:999999999.99',
             ],
@@ -48,7 +45,7 @@ class SendTransactionRequest extends FormRequest
                 'nullable',
                 'string',
                 'size:3',  // ISO 4217 currency code (e.g., USD, EUR)
-                'in:USD,EUR,GBP,AED,SAR,EGP,etc',  // Whitelist supported currencies
+                'in:USD,EUR,GBP,AED,SAR,EGP',  // Whitelist supported currencies
             ],
 
             // Sender info
