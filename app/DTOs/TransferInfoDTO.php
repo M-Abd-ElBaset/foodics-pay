@@ -1,11 +1,11 @@
 <?php
 
-namespace DTOs;
+namespace App\DTOs;
 
 class TransferInfoDTO
 {
     public function __construct(public ?string $reference,
-                                public ?\DateTime $date,
+                                public ?string $date,
                                 public ?float $amount,
                                 public ?string $currency)
     {
