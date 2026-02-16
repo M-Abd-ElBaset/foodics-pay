@@ -2,10 +2,10 @@
 
 namespace App\utilities;
 
+use App\DTOs\ReceiverInfoDTO;
+use App\DTOs\SenderInfoDTO;
+use App\DTOs\TransferInfoDTO;
 use App\Http\Requests\SendTransactionRequest;
-use DTOs\ReceiverInfoDTO;
-use DTOs\SenderInfoDTO;
-use DTOs\TransferInfoDTO;
 
 class XmlDirector
 {

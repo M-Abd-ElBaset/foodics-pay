@@ -2,15 +2,16 @@
 
 namespace App\utilities;
 
+use App\DTOs\ReceiverInfoDTO;
+use App\DTOs\SenderInfoDTO;
+use App\DTOs\TransferInfoDTO;
 use DOMDocument;
-use DTOs\ReceiverInfoDTO;
-use DTOs\SenderInfoDTO;
-use DTOs\TransferInfoDTO;
+use DOMElement;
 
 class XmlBuilder
 {
     protected DOMDocument $xml;
-    protected \DOMElement $root;
+    protected DOMElement $root;
 
     public function createDocument(): self
     {
@@ -111,7 +112,7 @@ class XmlBuilder
             return $this;
         }
 
-        $this->root->appendChild($this->xml->createElement('PaymentType'), $paymentType);
+        $this->root->appendChild($this->xml->createElement('PaymentType', $paymentType));
 
         return $this;
     }
@@ -123,7 +124,7 @@ class XmlBuilder
             return $this;
         }
 
-        $this->root->appendChild($this->xml->createElement('ChargeDetails'), $chargeDetails);
+        $this->root->appendChild($this->xml->createElement('ChargeDetails', $chargeDetails));
 
         return $this;
     }
